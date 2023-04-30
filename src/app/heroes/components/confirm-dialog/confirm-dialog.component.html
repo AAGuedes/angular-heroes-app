@@ -1,0 +1,19 @@
+<p class="text-xl" mat-dialog-title>¿Está seguro?</p>
+<div mat-dialog-content>
+  <p>Este proceso no es irreversible, está a punto de eliminar  HEROE</p>
+</div>
+<div mat-dialog-actions class="flex justify-content-between">
+  <button mat-flat-button
+          color="primary"
+          (click)="onConfirm()"
+          cdkFocusInitial>
+    <mat-icon>done</mat-icon>
+    Confirmar
+  </button>
+  <button mat-flat-button
+          color="warn"
+          (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+    Cancelar
+  </button>
+</div>
