@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import { filter, switchMap, tap } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-
-import { switchMap } from 'rxjs';
 
 import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
@@ -89,12 +88,16 @@ export class NewPageComponent implements OnInit {
       data: this.heroForm.value,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(!result) return;
-      this.showSnackbar(`${this.heroForm.value.superhero} borrado!`);
-      this.router.navigate(['/heroes/list']);
-      this.heroesService.deleteHeroById(this.currentHero.id);
-    });
+    dialogRef.afterClosed()
+      .pipe(
+        filter((result: boolean) => result === true),
+        switchMap(()=> this.heroesService.deleteHeroById(this.currentHero.id)),
+        filter((wasDeleted: boolean) => wasDeleted),
+      )
+      .subscribe(() => {
+        this.showSnackbar(`${this.heroForm.value.superhero} borrado!`);
+        this.router.navigate(['/heroes/list']);
+      });
   }
 
   showSnackbar(message: string): void {

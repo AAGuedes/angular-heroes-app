@@ -1,7 +1,10 @@
-<p class="text-xl" mat-dialog-title>¿Está seguro?</p>
-<div mat-dialog-content>
-  <p>Este proceso no es irreversible, está a punto de eliminar  HEROE</p>
+<p class="text-xl" mat-dialog-title>¿Quiere borrar a {{ data.superhero }}?</p>
+
+<div mat-dialog-content class="flex align-content-center">
+  <mat-icon>info</mat-icon>
+  <p>¡Este proceso es irreversible!</p>
 </div>
+
 <div mat-dialog-actions class="flex justify-content-between">
   <button mat-flat-button
           color="primary"
@@ -10,6 +13,7 @@
     <mat-icon>done</mat-icon>
     Confirmar
   </button>
+
   <button mat-flat-button
           color="warn"
           (click)="onCancel()">
