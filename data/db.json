@@ -166,6 +166,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "4lbrPFc",
+      "superhero": "Joker",
+      "publisher": "Marvel Comics",
+      "alter_ego": "John Doe",
+      "first_appearance": "Comic Udemy 2023",
+      "characters": "John Doe",
+      "alt_img": "https://i.pinimg.com/originals/d3/b7/db/d3b7db56311c777d525b2dda6674fcd4.jpg"
     }
   ]
 }
