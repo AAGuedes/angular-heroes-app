@@ -25,8 +25,10 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <button mat-button routerLink="/auth/login">
-      Login
+    <button mat-button
+            (click)="onLogout()">
+      <span>{{ user?.email }}</span>
+      Logout
     </button>
   </mat-toolbar>
 
