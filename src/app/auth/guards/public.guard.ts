@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Route, UrlSegment, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { Router, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable, map, tap } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {
+export class PublicGuard {
 
   constructor(
     private authService: AuthService,
@@ -18,10 +18,11 @@ export class AuthGuard {
     return this.authService.checkAuthentication()
       .pipe(
         tap(isAuthenticated => {
-          if(!isAuthenticated) {
-            this.router.navigate(['./auth/login']);
+          if(isAuthenticated) {
+            this.router.navigate(['./']);
           }
-        })
+        }),
+        map(isAuthenticated => !isAuthenticated)
       );
   }
 
